@@ -27,6 +27,14 @@
   "jest": {
     "setupFiles": [
       "./src/tests/setup.js"
+    ],
+    "testRegex": ".test.js",
+    "roots": [
+      "src/tests"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src/controllers"
     ]
   }
 }

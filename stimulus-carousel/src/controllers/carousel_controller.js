@@ -5,6 +5,9 @@ export default class extends Controller {
   static targets = [ "slide", "image", "caption" ]
   
   initialize() {
+    if (!this.data.has("index")) {
+      this.index = 0
+    }
     this.showCurrentSlide()
   }
 
