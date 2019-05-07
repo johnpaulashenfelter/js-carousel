@@ -21,14 +21,27 @@ describe('CarouselController', () => {
     <button data-action="carousel#next">Next</button>
     `;
 
-  const application = Application.start();
-  application.register("carousel", CarouselController);
+    const application = Application.start();
+    application.register("carousel", CarouselController);
   });
 
   it('has an initial `index` of "0"', () => {
     const index = document.querySelector('div').dataset.carouselIndex
     expect(index).toBe("0");
   });
+
+  it('renders the slide image', () => {
+    const imgSrc = document.querySelector('figure img').src
+    const slide = slides[0]
+    expect(imgSrc).toBe(slide.imgUrl)
+  })
+
+  it('renders the caption', () => {
+    const caption = document.querySelector('figure figcaption').textContent
+    const slide = slides[0]
+    expect(caption).toContain(slide.description)
+    expect(caption).toContain(slide.attribution.name)
+  })
 
   it('increments `index` when Next is clicked', () => {
     const carousel = document.querySelector('div')
@@ -57,7 +70,7 @@ describe('CarouselController', () => {
     });
   });
   describe('with the last slide selected', () => {
-    it('wraps `index` to the min vaue when Next is clicked', () => {
+    it('wraps `index` to the min value when Next is clicked', () => {
       const carousel = document.querySelector('div')
       const btn = document.querySelector('[data-action="carousel#next"]')
       const index = document.querySelector('div').dataset.carouselIndex
@@ -95,20 +108,4 @@ describe('CarouselController', () => {
 //   wrapper.setProps({ slides: [{ ...slides[0], Img, imgHeight }] });
 //   expect(wrapper.find(CarouselSlide).prop('Img')).toBe(Img);
 //   expect(wrapper.find(CarouselSlide).prop('imgHeight')).toBe(imgHeight);
-// });
-// describe('with a middle slide selected', () => {
-//   beforeEach(() => {
-//     wrapper.setState({ slideIndex: 1 });
-//   });
-//   it('decrements `slideIndex` when Prev is clicked', () => {
-//     wrapper.find('[data-action="prev"]').simulate('click');
-//     expect(wrapper.state('slideIndex')).toBe(0);
-//   });
-//   it('increments `slideIndex` when Next is clicked', () => {
-//     wrapper.setState({ slideIndex: 1 });
-//     wrapper.find('[data-action="next"]').simulate('click');
-//     expect(wrapper.state('slideIndex')).toBe(2);
-//   });
-// });
-
 // });
