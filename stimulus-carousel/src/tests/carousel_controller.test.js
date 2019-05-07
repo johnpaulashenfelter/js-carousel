@@ -25,6 +25,7 @@ describe('CarouselController', () => {
     application.register("carousel", CarouselController);
   });
 
+
   it('has an initial `index` of "0"', () => {
     const index = document.querySelector('div').dataset.carouselIndex
     expect(index).toBe("0");
@@ -39,10 +40,17 @@ describe('CarouselController', () => {
   it('renders the caption', () => {
     const caption = document.querySelector('figure figcaption').textContent
     const slide = slides[0]
+    const formattedCaption = new CarouselController().generateCaption(slides[0]).replace(/<[^>]+>/g, '')
     expect(caption).toContain(slide.description)
     expect(caption).toContain(slide.attribution.name)
+    expect(caption).toBe(formattedCaption)
   })
 
+  it('generates the caption from the slide data', () => {
+    const carousel = new CarouselController()
+    expect(carousel.generateCaption(slides[0])).toBe("<strong>Seattle</strong> Photo by <a href=\"https://unsplash.com/@gkumar2175?utm_source=test-driven-carousel&utm_medium=referral}\">Ganapathy Kumar</a> on <a href=\"https://unsplash.com/?utm_source=test-driven-carousel&utm_medium=referral\"}>Unsplash</a>")
+  })
+  
   it('increments `index` when Next is clicked', () => {
     const carousel = document.querySelector('div')
     const btn = document.querySelector('[data-action="carousel#next"]')
@@ -79,6 +87,7 @@ describe('CarouselController', () => {
       expect(carousel.dataset.carouselIndex).toBe("0");
     });
   });
+
 })
 
 
