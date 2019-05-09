@@ -4,20 +4,16 @@ title: StimulusJS
 ---
 
 
-# History and Philosophy
+# StimulusJS: History and Philosophy
 
 - Extracted from Basecamp codebase
 - One of the preset JS/webpacker configurations for Rails 5.2+ (along with Vue, React, Elm, Ember, AngularJS)
 - Uses data-attributes
 - Convention over configuration
+- < 1800 lines uncompressed/prettified
+- Think more jQuery, less SPA
 
 ---
-
-# Install
-`yarn add stimulus`
-
----
-
 # The Basics
 - Controllers
 - Actions
@@ -117,7 +113,10 @@ Controller generates a singular, plural, and existential property for each targe
 * multiple instances of controllers on different elements are supported
 
 ---
-# Demo - Carousel in Stimulus
+# Slide Carousel in StimulusJS
+
+![](./carousel.png)
+
 ---
 ### index.html
 ```
@@ -205,6 +204,9 @@ export default class extends Controller {
 ```
 ---
 # Carousel in React
+![](./carousel.png)
+
+
 ---
 THERE IS NO HTML PAGE
 ```
